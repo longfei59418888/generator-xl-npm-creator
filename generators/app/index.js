@@ -41,6 +41,14 @@ module.exports = class extends Generator {
       this.templatePath('lib/tag.js'),
       this.destinationPath('lib/tag.js')
     );
+    this.fs.copy(
+      this.templatePath('.gitignore'),
+      this.destinationPath('.gitignore')
+    );
+    this.fs.copy(
+      this.templatePath('README.md'),
+      this.destinationPath('README.md')
+    );
   }
 
 };
