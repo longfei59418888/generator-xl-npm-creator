@@ -12,6 +12,11 @@ module.exports = class extends Generator {
         type: 'input',
         name: 'npmName',
         message: '输入 npm 包的名称...'
+      },
+      {
+        type: 'input',
+        name: 'description',
+        message: '输入 npm 包的描述...'
       }
     ];
 
@@ -23,6 +28,7 @@ module.exports = class extends Generator {
   writing() {
     var pkg = this.fs.readJSON(this.templatePath('package.json'), {});
     pkg.name = this.props.npmName
+    pkg.description = this.props.description
     pkg.bin = `./bin/${this.props.npmName}.js`
     this.fs.writeJSON(this.destinationPath('package.json'), pkg);
     // mkdirp('public');
@@ -37,7 +43,4 @@ module.exports = class extends Generator {
     );
   }
 
-  install() {
-    this.installDependencies();
-  }
 };
